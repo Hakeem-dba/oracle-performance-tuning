@@ -41,6 +41,9 @@ No labs or hands-on exercises are included.
 
 ## Covered Topics
 
+## Repository Structure
+- [01 – Architecture Overview](01-architecture/01-introduction.md)
+
 ### Oracle Architecture & Performance Fundamentals
 - Oracle instance and database components
 - SGA and PGA behavior
