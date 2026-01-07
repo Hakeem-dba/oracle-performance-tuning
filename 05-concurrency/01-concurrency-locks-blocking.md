@@ -78,7 +78,6 @@ Session B must wait until Session A commits or rolls back.
 
 If Session A stays open for a long time, many sessions may queue behind it and the application can appear frozen.
 
-# Common Symptoms and Diagnosis of Blocking
 
 ## Common Symptoms of Blocking
 
@@ -170,8 +169,6 @@ WHERE sql_id = '<SQL_ID>';
 ```
 This step is critical for understanding why the lock is being held.
 
-# Typical Causes and Response to Blocking
-
 ## Typical Causes Found During Diagnosis
 
 Blocking issues are usually not random.  
@@ -218,6 +215,8 @@ Large updates should be:
 - executed in batches where possible
 - scheduled during low-usage periods
 
+---
+
 ### Batch Jobs Executed During Peak Hours
 
 Batch jobs are a common source of blocking in production systems.
@@ -230,7 +229,6 @@ They often:
 
 When batch jobs run during business hours, online users may experience delays, timeouts, or application hangs due to lock contention.
 
----
 
 #### Why Batch Jobs Cause Blocking
 
@@ -240,8 +238,6 @@ Batch jobs typically:
 - run longer than normal OLTP transactions
 
 As a result, locks are held longer, increasing the likelihood that other sessions will be blocked.
-
----
 
 #### Recommended Practices for Batch Jobs
 
@@ -269,9 +265,7 @@ Examples include:
 
 Because many sessions target the same rows, contention and blocking occur even if each transaction is small.
 
----
-
-### Impact of Hot Rows on Performance
+#### Impact of Hot Rows on Performance
 
 Hot rows can cause:
 - frequent row-level lock contention
@@ -281,9 +275,8 @@ Hot rows can cause:
 
 This problem often appears suddenly when concurrency increases.
 
----
 
-### Strategies to Reduce Hot Row Contention
+#### Strategies to Reduce Hot Row Contention
 
 Common approaches include:
 - redesigning data models to distribute updates across multiple rows
