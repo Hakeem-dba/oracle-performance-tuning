@@ -66,3 +66,6 @@ UPDATE accounts
 SET balance = balance - 500
 WHERE id = 10;
 -- no commit yet
+
+Session A:
+```sql
