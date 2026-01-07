@@ -78,6 +78,7 @@ Session B must wait until Session A commits or rolls back.
 
 If Session A stays open for a long time, many sessions may queue behind it and the application can appear frozen.
 
+---
 
 ## Common Symptoms of Blocking
 
