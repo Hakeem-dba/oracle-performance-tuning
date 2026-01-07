@@ -218,9 +218,7 @@ Large updates should be:
 - executed in batches where possible
 - scheduled during low-usage periods
 
-# Batch Jobs, Hot Rows, and Blocking Response
-
-## Batch Jobs Executed During Peak Hours
+### Batch Jobs Executed During Peak Hours
 
 Batch jobs are a common source of blocking in production systems.
 
@@ -234,7 +232,7 @@ When batch jobs run during business hours, online users may experience delays, t
 
 ---
 
-## Why Batch Jobs Cause Blocking
+#### Why Batch Jobs Cause Blocking
 
 Batch jobs typically:
 - process data in large transactions
@@ -245,7 +243,7 @@ As a result, locks are held longer, increasing the likelihood that other session
 
 ---
 
-## Recommended Practices for Batch Jobs
+#### Recommended Practices for Batch Jobs
 
 To reduce blocking caused by batch workloads:
 
@@ -259,7 +257,7 @@ Batch workloads should be designed with concurrency in mind, not treated as isol
 
 ---
 
-## Hot Rows
+### Hot Rows
 
 Hot rows are rows that are frequently updated by many sessions.
 
@@ -273,7 +271,7 @@ Because many sessions target the same rows, contention and blocking occur even i
 
 ---
 
-## Impact of Hot Rows on Performance
+### Impact of Hot Rows on Performance
 
 Hot rows can cause:
 - frequent row-level lock contention
@@ -285,7 +283,7 @@ This problem often appears suddenly when concurrency increases.
 
 ---
 
-## Strategies to Reduce Hot Row Contention
+### Strategies to Reduce Hot Row Contention
 
 Common approaches include:
 - redesigning data models to distribute updates across multiple rows
@@ -342,3 +340,27 @@ Blocking prevention is primarily a design and workload management responsibility
 - hot rows limit scalability and increase contention
 - killing sessions should be a last resort
 - long-term solutions focus on design, scheduling, and workload separation
+
+## Reducing Blocking Safely
+
+The correct solution to blocking problems depends on identifying the root cause rather than reacting to symptoms.
+
+Common safe approaches include:
+- keeping transactions short
+- committing at appropriate points
+- adding indexes on foreign key columns
+- breaking large updates into smaller batches
+- avoiding frequent updates to hot rows
+- separating batch workloads from peak OLTP hours
+
+Killing sessions should be considered a last resort, as it can trigger large rollbacks and cause application errors.
+
+---
+
+## Summary
+
+- concurrency becomes a performance issue when sessions wait on each other
+- locks protect data consistency but can cause blocking if held too long
+- blocking is commonly caused by long transactions, large updates, or missing indexes
+- deadlocks occur when sessions wait on each other in a cycle
+- identifying blockers starts with V$SESSION and SQL investigation
