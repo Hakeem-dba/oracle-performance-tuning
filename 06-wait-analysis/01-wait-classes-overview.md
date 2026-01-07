@@ -1,4 +1,4 @@
-# Section 8 – Wait Classes Overview
+# Section 8.1 – Wait Classes Overview
 
 ## Overview
 
