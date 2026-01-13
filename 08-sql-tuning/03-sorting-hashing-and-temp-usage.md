@@ -121,9 +121,6 @@ FROM v$tempseg_usage
 ORDER BY temp_mb DESC;
 ```
 
-```sql
-
-```
 
 ```sql
 SELECT sid,
