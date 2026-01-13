@@ -139,8 +139,8 @@ WHERE sql_id = '<SQL_ID>';
 ```
 This helps determine why the SQL requires sorting or hashing.
 
-##How to Reduce TEMP Usage
-###SQL-Level Improvements
+## How to Reduce TEMP Usage
+### SQL-Level Improvements
 - reduce data volume early using filters
 - remove unnecessary ORDER BY and DISTINCT
 - review join order and join methods
@@ -148,20 +148,20 @@ This helps determine why the SQL requires sorting or hashing.
 
 SQL tuning is usually the most effective solution.
 
-###Memory Considerations
+### Memory Considerations
 - review PGA_AGGREGATE_TARGET
 - monitor PGA usage during peak load
 - avoid increasing memory without evidence
 Memory changes should follow SQL analysis, not precede it.
 
-###Control Parallel Execution
+### Control Parallel Execution
 
 - limit degree of parallelism
 - avoid parallel execution for OLTP queries
 - schedule parallel workloads during off-peak hours
 Parallelism improves performance only when resources are sufficient.
 
-##Common Mistakes
+## Common Mistakes
 
 Avoid the following mistakes:
 - increasing TEMP size instead of fixing SQL
@@ -170,7 +170,7 @@ Avoid the following mistakes:
 - blindly increasing PGA settings
 TEMP is usually a symptom, not the root cause.
 
-##Summary
+## Summary
 - sorting and hashing are common SQL operations
 - insufficient memory causes spills to TEMP
 - TEMP usage increases I/O and response time
